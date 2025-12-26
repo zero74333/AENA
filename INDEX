@@ -1,0 +1,713 @@
+import React, { useState } from 'react';
+import { Home, Phone, Instagram, Menu, X, Award, Users, Clock, CheckCircle, Star, Mail, MapPin } from 'lucide-react';
+
+const AenaWebsite = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+
+  const navigation = [
+    { name: 'Home', id: 'home' },
+    { name: 'About', id: 'about' },
+    { name: 'Services', id: 'services' },
+    { name: 'Gallery', id: 'gallery' },
+    { name: 'Process', id: 'process' },
+    { name: 'Contact', id: 'contact' }
+  ];
+
+  const services = [
+    {
+      title: 'Modular Kitchen',
+      description: 'Contemporary kitchen designs that blend functionality with aesthetics. Custom cabinetry, modern appliances, and innovative storage solutions.',
+      features: ['Custom Layouts', 'Premium Materials', 'Smart Storage', 'Modern Appliances'],
+      image: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=600'
+    },
+    {
+      title: 'Wall and TV Unit',
+      description: 'Custom entertainment centers and wall units tailored to your space. Sleek designs that become the focal point of your living area.',
+      features: ['Customized Design', 'Cable Management', 'Display Shelving', 'LED Lighting'],
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600'
+    },
+    {
+      title: 'Luxury Bedroom Designs',
+      description: 'Elegant bedroom spaces designed for comfort and style. Create your personal sanctuary with our bespoke bedroom solutions.',
+      features: ['Wardrobe Solutions', 'Bedside Units', 'Study Areas', 'Ambient Lighting'],
+      image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600'
+    },
+    {
+      title: 'Living Room Design',
+      description: 'Transform your living space into an inviting area for relaxation and entertainment. Custom furniture and layout planning.',
+      features: ['Space Planning', 'Furniture Selection', 'Color Schemes', 'Accent Pieces'],
+      image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600'
+    },
+    {
+      title: 'Office Interiors',
+      description: 'Professional workspace design that enhances productivity and reflects your brand identity.',
+      features: ['Ergonomic Design', 'Brand Integration', 'Meeting Spaces', 'Storage Systems'],
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600'
+    },
+    {
+      title: 'Complete Home Renovation',
+      description: 'Full-scale home transformations from concept to completion. We handle everything from design to execution.',
+      features: ['End-to-End Service', 'Project Management', 'Quality Materials', 'Timely Delivery'],
+      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600'
+    }
+  ];
+
+  const galleryImages = [
+    { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800', title: 'Modern Living Room' },
+    { url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800', title: 'Luxury Bedroom' },
+    { url: 'https://images.unsplash.com/photo-1556912167-f556f1f39faa?w=800', title: 'Contemporary Kitchen' },
+    { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800', title: 'Elegant Dining' },
+    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', title: 'Minimalist Design' },
+    { url: 'https://images.unsplash.com/photo-1615873968403-89e068629265?w=800', title: 'TV Unit Design' },
+    { url: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800', title: 'Modern Workspace' },
+    { url: 'https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=800', title: 'Stylish Interior' },
+    { url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800', title: 'Cozy Bedroom' }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Priya Sharma',
+      text: 'AENA transformed our house into a dream home! Their attention to detail and understanding of our needs was exceptional.',
+      rating: 5,
+      project: 'Complete Home Interior'
+    },
+    {
+      name: 'Rajesh Kumar',
+      text: 'Professional team, quality work, and delivered on time. Our modular kitchen is exactly what we envisioned.',
+      rating: 5,
+      project: 'Modular Kitchen'
+    },
+    {
+      name: 'Anjali Verma',
+      text: 'The bedroom design exceeded our expectations. They created a perfect blend of luxury and functionality.',
+      rating: 5,
+      project: 'Luxury Bedroom'
+    }
+  ];
+
+  const processSteps = [
+    {
+      icon: '💭',
+      title: 'Consultation',
+      description: 'We understand your vision, requirements, and budget through detailed discussions.'
+    },
+    {
+      icon: '📐',
+      title: 'Design & Planning',
+      description: 'Our designers create custom 3D designs and detailed plans tailored to your space.'
+    },
+    {
+      icon: '✅',
+      title: 'Approval',
+      description: 'Review designs, make revisions, and finalize materials and specifications.'
+    },
+    {
+      icon: '🔨',
+      title: 'Execution',
+      description: 'Expert craftsmen bring designs to life with quality materials and precision.'
+    },
+    {
+      icon: '🎉',
+      title: 'Handover',
+      description: 'Final inspection and handover of your beautifully transformed space.'
+    }
+  ];
+
+  const stats = [
+    { icon: <Award className="text-amber-600" size={40} />, value: '500+', label: 'Projects Completed' },
+    { icon: <Users className="text-amber-600" size={40} />, value: '450+', label: 'Happy Clients' },
+    { icon: <Clock className="text-amber-600" size={40} />, value: '4+', label: 'Years Experience' },
+    { icon: <CheckCircle className="text-amber-600" size={40} />, value: '100%', label: 'Satisfaction Rate' }
+  ];
+
+  const handleSubmit = () => {
+    if (formData.name && formData.email && formData.message) {
+      alert('Thank you for your message! We will get back to you within 24 hours.');
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } else {
+      alert('Please fill in all required fields.');
+    }
+  };
+
+  const NavBar = () => (
+    <nav className="bg-gradient-to-r from-amber-50 to-amber-100 shadow-lg sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          <button onClick={() => setCurrentPage('home')} className="flex items-center space-x-3 hover:opacity-80 transition">
+            <div className="text-3xl font-bold text-gray-800">AENA</div>
+            <div className="text-xs text-gray-600 hidden sm:block">
+              INTERIORS AND<br />DECORATORS
+            </div>
+          </button>
+
+          <div className="hidden md:flex space-x-6">
+            {navigation.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setCurrentPage(item.id)}
+                className={`px-3 py-2 text-sm font-medium transition-all ${
+                  currentPage === item.id
+                    ? 'text-gray-900 border-b-2 border-gray-900'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 hover:bg-amber-200 rounded"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden pb-4 space-y-1">
+            {navigation.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setCurrentPage(item.id);
+                  setMobileMenuOpen(false);
+                }}
+                className={`block w-full text-left px-4 py-3 text-sm font-medium rounded ${
+                  currentPage === item.id
+                    ? 'text-gray-900 bg-amber-200'
+                    : 'text-gray-600 hover:bg-amber-100'
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+
+  const HomePage = () => (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-amber-50 via-amber-100 to-orange-100 py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+                ELEVATING SPACES.<br />ENHANCING LIVES.
+              </h1>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                Interior Design Solutions for Modern Living. We craft environments that reflect your personality, meet your lifestyle, and inspire every day.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button
+                  onClick={() => setCurrentPage('contact')}
+                  className="bg-gray-900 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 shadow-lg"
+                >
+                  Get Started
+                </button>
+                <button
+                  onClick={() => setCurrentPage('gallery')}
+                  className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg border-2 border-gray-900"
+                >
+                  View Gallery
+                </button>
+              </div>
+            </div>
+            <div className="bg-white p-4 rounded-2xl shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800" 
+                alt="Modern Interior"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 px-4 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="flex justify-center mb-3">{stat.icon}</div>
+                <div className="text-4xl font-bold mb-2">{stat.value}</div>
+                <div className="text-gray-300">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">What We Offer</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center p-8 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl hover:shadow-xl transition-all">
+              <div className="text-6xl mb-4">🏡</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Residential Design</h3>
+              <p className="text-gray-700 mb-4">Homes, apartments, and renovations tailored to your lifestyle</p>
+              <ul className="text-left space-y-2 text-gray-600">
+                <li>• Complete home interiors</li>
+                <li>• Room-by-room design</li>
+                <li>• Renovation projects</li>
+              </ul>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl hover:shadow-xl transition-all">
+              <div className="text-6xl mb-4">🏢</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Commercial Spaces</h3>
+              <p className="text-gray-700 mb-4">Professional environments that enhance productivity</p>
+              <ul className="text-left space-y-2 text-gray-600">
+                <li>• Office interiors</li>
+                <li>• Retail stores</li>
+                <li>• Hospitality design</li>
+              </ul>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl hover:shadow-xl transition-all">
+              <div className="text-6xl mb-4">✨</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Custom Projects</h3>
+              <p className="text-gray-700 mb-4">Bespoke solutions for unique requirements</p>
+              <ul className="text-left space-y-2 text-gray-600">
+                <li>• Custom furniture</li>
+                <li>• Material selection</li>
+                <li>• Unique designs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 px-4 bg-gradient-to-b from-amber-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">What Our Clients Say</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="flex mb-3">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="text-amber-500 fill-current" size={20} />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                <div className="border-t pt-4">
+                  <p className="font-bold text-gray-900">{testimonial.name}</p>
+                  <p className="text-sm text-gray-600">{testimonial.project}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 bg-gray-900 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Space?</h2>
+          <p className="text-xl mb-8 text-gray-300">Let's discuss your project and bring your vision to life</p>
+          <button
+            onClick={() => setCurrentPage('contact')}
+            className="bg-amber-500 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-amber-600 transition-all transform hover:scale-105"
+          >
+            Schedule a Consultation
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+
+  const AboutPage = () => (
+    <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-5xl font-bold text-gray-900 mb-6 text-center">About AENA Interiors</h2>
+        <p className="text-xl text-gray-600 mb-12 text-center">Creating Beautiful Spaces Since 2020</p>
+        
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <img 
+              src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600" 
+              alt="Our Team"
+              className="w-full h-64 object-cover rounded-lg mb-6"
+            />
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Story</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              We craft environments that reflect your personality, meet your lifestyle, and inspire every day. With over 4 years of experience, our team of passionate designers transforms residential and commercial spaces into beautiful, functional interiors.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Every project is a collaboration, and we believe in creating spaces that tell your unique story while incorporating the latest design trends and sustainable practices.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Our Mission</h3>
+              <p className="text-gray-700 leading-relaxed">
+                To elevate every space we touch, creating environments that enhance the lives of those who inhabit them. We strive to deliver exceptional design solutions that exceed expectations while maintaining the highest standards of quality and service.
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Our Vision</h3>
+              <p className="text-gray-700 leading-relaxed">
+                To be the leading interior design firm recognized for innovative, personalized, and sustainable design solutions. We aim to set new standards in the industry through creativity, craftsmanship, and unwavering commitment to client satisfaction.
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Our Values</h3>
+              <ul className="text-gray-700 space-y-2">
+                <li>• Excellence in every detail</li>
+                <li>• Client-focused approach</li>
+                <li>• Innovation and creativity</li>
+                <li>• Integrity and transparency</li>
+                <li>• Sustainable practices</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Why Choose AENA?</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="flex items-start space-x-4">
+              <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h4 className="font-bold text-gray-900 mb-2">Experienced Team</h4>
+                <p className="text-gray-600">Expert designers with years of industry experience and creative vision</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h4 className="font-bold text-gray-900 mb-2">Quality Assurance</h4>
+                <p className="text-gray-600">Premium materials and meticulous attention to detail in every project</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h4 className="font-bold text-gray-900 mb-2">Timely Delivery</h4>
+                <p className="text-gray-600">Efficient project management ensuring completion within agreed timelines</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h4 className="font-bold text-gray-900 mb-2">Personalized Service</h4>
+                <p className="text-gray-600">Tailored solutions designed specifically for your needs and preferences</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const ServicesPage = () => (
+    <div className="min-h-screen bg-white py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-5xl font-bold text-gray-900 mb-4 text-center">Our Services</h2>
+        <p className="text-xl text-gray-600 mb-16 text-center max-w-3xl mx-auto">
+          Comprehensive interior design solutions tailored to transform your spaces into functional works of art
+        </p>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <img 
+                src={service.image} 
+                alt={service.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <div className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center space-x-2">
+                      <CheckCircle className="text-green-600" size={16} />
+                      <span className="text-sm text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const GalleryPage = () => (
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-5xl font-bold text-gray-900 mb-4 text-center">Our Portfolio</h2>
+        <p className="text-xl text-gray-600 mb-12 text-center">Explore our collection of stunning interior designs</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryImages.map((image, index) => (
+            <div key={index} className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
+              <img 
+                src={image.url} 
+                alt={image.title}
+                className="w-full h-80 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div className="p-6 text-white">
+                  <h3 className="text-xl font-bold">{image.title}</h3>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <p className="text-gray-600 mb-6">Want to see more of our work?</p>
+          <button
+            onClick={() => setCurrentPage('contact')}
+            className="bg-gray-900 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105"
+          >
+            Request Portfolio
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const ProcessPage = () => (
+    <div className="min-h-screen bg-white py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-5xl font-bold text-gray-900 mb-4 text-center">Our Process</h2>
+        <p className="text-xl text-gray-600 mb-16 text-center">A seamless journey from concept to completion</p>
+        
+        <div className="space-y-8">
+          {processSteps.map((step, index) => (
+            <div key={index} className="flex items-start space-x-6 bg-gradient-to-r from-amber-50 to-orange-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl shadow-md">
+                  {step.icon}
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center space-x-4 mb-3">
+                  <span className="text-3xl font-bold text-gray-400">0{index + 1}</span>
+                  <h3 className="text-2xl font-bold text-gray-900">{step.title}</h3>
+                </div>
+                <p className="text-gray-700 text-lg">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 bg-gray-900 text-white rounded-2xl p-12 text-center">
+          <h3 className="text-3xl font-bold mb-4">Ready to Begin Your Project?</h3>
+          <p className="text-xl text-gray-300 mb-8">Let's start with a free consultation to understand your vision</p>
+          <button
+            onClick={() => setCurrentPage('contact')}
+            className="bg-amber-500 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-amber-600 transition-all transform hover:scale-105"
+          >
+            Book Free Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const ContactPage = () => (
+    <div className="min-h-screen bg-gradient-to-b from-white to-amber-50 py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-5xl font-bold text-gray-900 mb-4 text-center">Get In Touch</h2>
+        <p className="text-xl text-gray-600 mb-12 text-center">Let's create something beautiful together</p>
+        
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <div className="bg-white p-8 rounded-xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <Phone className="text-amber-600" size={24} />
+                  <div>
+                    <p className="text-sm text-gray-600">Call Us</p>
+                    <p className="text-lg font-semibold text-gray-900">9568033874</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <Instagram className="text-amber-600" size={24} />
+                  <div>
+                    <p className="text-sm text-gray-600">Follow Us</p>
+                    <p className="text-lg font-semibold text-gray-900">@aenainteriors</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <Mail className="text-amber-600" size={24} />
+                  <div>
+                    <p className="text-sm text-gray-600">Email Us</p>
+                    <p className="text-lg font-semibold text-gray-900">info@aenainteriors.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <MapPin className="text-amber-600" size={24} />
+                  <div>
+                    <p className="text-sm text-gray-600">Location</p>
+                    <p className="text-lg font-semibold text-gray-900">Hyderabad, Telangana</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-amber-100 to-orange-100 p-8 rounded-xl">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Business Hours</h3>
+              <div className="space-y-2 text-gray-700">
+                <p>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                <p>Sunday: By Appointment Only</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-gray-900 font-semibold mb-2">Name *</label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  placeholder="Your full name"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-gray-900 font-semibold mb-2">Email *</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  placeholder="your@email.com"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-gray-900 font-semibold mb-2">Phone</label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  placeholder="Your phone number"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-gray-900 font-semibold mb-2">Message *</label>
+                <textarea
+                  rows="5"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  placeholder="Tell us about your project, budget, timeline, and any specific requirements..."
+                ></textarea>
+              </div>
+              
+              <button
+                onClick={handleSubmit}
+                className="w-full bg-gray-900 text-white py-4 rounded-lg text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 shadow-lg"
+              >
+                Send Message
+              </button>
+              
+              <p className="text-sm text-gray-600 text-center">
+                We'll respond within 24 hours
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const Footer = () => (
+    <footer className="bg-gray-900 text-white py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 className="text-2xl font-bold mb-4">AENA</h3>
+            <p className="text-gray-400 text-sm">
+              Elevating Spaces. Enhancing Lives. Your trusted partner in interior design.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-bold mb-4">Quick Links</h4>
+            <div className="space-y-2">
+              {navigation.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setCurrentPage(item.id)}
+                  className="block text-gray-400 hover:text-white transition text-sm"
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          <div>
+            <h4 className="font-bold mb-4">Services</h4>
+            <div className="space-y-2 text-sm text-gray-400">
+              <p>Modular Kitchen</p>
+              <p>Bedroom Design</p>
+              <p>Living Room</p>
+              <p>Office Interiors</p>
+              <p>Complete Renovation</p>
+            </div>
+          </div>
+          
+          <div>
+            <h4 className="font-bold mb-4">Connect</h4>
+            <div className="space-y-2 text-sm text-gray-400">
+              <p>Phone: 9568033874</p>
+              <p>Email: info@aenainteriors.com</p>
+              <p>Instagram: @aenainteriors</p>
+              <p>Hyderabad, Telangana</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="border-t border-gray-800 pt-8 text-center">
+          <p className="text-sm text-gray-400">
+            © 2024 AENA Interiors and Decorators. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+
+  return (
+    <div className="min-h-screen bg-white">
+      <NavBar />
+      {currentPage === 'home' && <HomePage />}
+      {currentPage === 'about' && <AboutPage />}
+      {currentPage === 'services' && <ServicesPage />}
+      {currentPage === 'gallery' && <GalleryPage />}
+      {currentPage === 'process' && <ProcessPage />}
+      {currentPage === 'contact' && <ContactPage />}
+      <Footer />
+    </div>
+  );
+};
+
+export default AenaWebsite;
